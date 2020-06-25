@@ -2,19 +2,19 @@ package _00_Dynamic_Integer_Array;
 
 public class DynamicIntegerArray {
 	//1. Create a private int array. Don't initialize it.
-
+private int[] a;
 	
 	public DynamicIntegerArray() {
 		//2. Initialize the int array to have 0 elements. 
 		//   This will prevent a null pointer exception
-	
+	a = new int[0];
 	}
 	
 	//3. Complete the steps in the add method
 	public void add(int v) {
 		//A. create and initialize a new int array to be one 
 		//   element longer than the member array
-		
+		private int[] a2 =  new int[a.length + 1];
 		//B. set the last element of your new array to 
 		//   the value passed into the method
 		
@@ -46,7 +46,17 @@ public class DynamicIntegerArray {
 		//   element longer than the member array
 		
 		//B. Make a for loop that iterates through the new array
-
+/*
+ for (int i = 0; i < a2.length; i++) {
+if(i < location) {
+	a2[i] = a[i];
+}else if(i > location) {
+	a2[i] = a[(i - 1)];
+}else {
+a2[i] = v;	
+}	
+}
+*/
 			//C. if i is less than location:
 		    //		set the element at i of the new array to the element at i of the member array
 			
@@ -57,9 +67,8 @@ public class DynamicIntegerArray {
 		
 		
 		//F. set the member array equal to the new array
-	
-	}
-	
+	a = a2;
+	}	
 	//8. Run the tests again and check your progress
 	
 	//9. Complete the steps in the remove method
