@@ -42,8 +42,7 @@ if(s.contains("diamond")) {
 }
     	}
     	/* 2. How many innocent crows had to die before the diamond was found? */
-    System.out.println((c - 1) + " innocent crows had to die before the diamond was found.");	
-    
+    System.out.println((c - 1) + " innocent crows had to die before the diamond was found.");
     }
     private void initializeCrows() {
         theMurder.add(new Crow("Rok"));

@@ -20,7 +20,8 @@ public class _06_IPodShuffle{
 		 */
 		
 	}
-	
+	ArrayList<Song> songs = new ArrayList<Song>();
+
 	public static void main(String[] args) {
 		new _06_IPodShuffle();
 	}
