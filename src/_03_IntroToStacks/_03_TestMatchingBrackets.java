@@ -19,10 +19,13 @@ public class _03_TestMatchingBrackets {
 	}
 
 	// USE A STACK TO COMPLETE THE METHOD FOR CHECKING IF EVERY OPENING BRACKET HAS A MATCHING CLOSING BRACKET
+Stack<Character> b = new Stack<Character>();
 	private boolean doBracketsMatch(String brackets) {
 		
 		//1. Use a for loop to iterate through your brackets String 
+for (int i = 0; i < b.size(); i++) {
 
+}
     			//2.  If the current character is an '{'
 
         			//3.  Push an '{' onto the stack 
