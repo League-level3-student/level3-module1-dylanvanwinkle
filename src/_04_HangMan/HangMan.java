@@ -12,21 +12,27 @@ import javax.swing.JPanel;
 public class HangMan implements KeyListener {
 	JFrame f = new JFrame();
 	JPanel p = new JPanel();
-	JLabel l = new JLabel();
+	JLabel l1 = new JLabel();
+	JLabel l2 = new JLabel();
 	String pop;
 	String blank;
 	int lives = 10;
+	int nw = 0;
+	int an = 0;
+	Stack<String> words = new Stack<String>();
 
 	public void run() {
-		Stack<String> words = new Stack<String>();
 		String a = JOptionPane.showInputDialog("How many words would you like to answer");
-		int an = Integer.parseInt(a);
+		an = Integer.parseInt(a);
+		nw = an;
 		addKey();
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(400, 200);
-		p.add(l);
+		p.add(l1);
+		p.add(l2);
 		f.add(p);
+		l2.setText("you have " + lives + " live(s) left.");
 
 		for (int i = 0; i < an; i++) {
 			String rw = Utilities.readRandomLineFromFile("dictionary.txt");
@@ -35,15 +41,8 @@ public class HangMan implements KeyListener {
 				words.push(rw);
 			}
 		}
-		if (!words.isEmpty()) {
-			pop = words.pop();
-			System.out.println(pop);
-		}
-		blank = "";
-		for (int i = 0; i < pop.length(); i++) {
-			blank += "_";
-		}
-		l.setText(blank);
+		snr();
+		l1.setText(blank);
 	}
 
 	public void addKey() {
@@ -76,7 +75,24 @@ public class HangMan implements KeyListener {
 				}
 			}
 			blank = newBlank;
-			l.setText(blank);
+			l1.setText(blank);
+		}
+		if (!blank.contains("_")) {
+			snr();
+		} else {
+			nw = 0;
+		}
+		l2.setText("you have " + lives + " live(s) left.");
+		if (lives <= 0) {
+			if (nw <= 0) {
+				int a = JOptionPane.showConfirmDialog(null, "You Lost.\n Would you like to play again.");
+				if (a == JOptionPane.YES_OPTION) {
+					run();
+				} else {
+					System.exit(0);
+				}
+				
+			}
 		}
 	}
 
@@ -86,4 +102,21 @@ public class HangMan implements KeyListener {
 
 	}
 
+	public void snr() {
+		if (!words.isEmpty()) {
+			pop = words.pop();
+			rb();
+			l1.setText(blank);
+			lives = 10;
+		} else {
+			lives = 0;
+		}
+	}
+
+	public void rb() {
+		blank = "";
+		for (int i = 0; i < pop.length(); i++) {
+			blank += "_";
+		}
+	}
 }
