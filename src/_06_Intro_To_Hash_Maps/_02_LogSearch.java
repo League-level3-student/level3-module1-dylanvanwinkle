@@ -38,7 +38,7 @@ public class _02_LogSearch implements ActionListener {
 	JButton b1 = new JButton("Add Entry");
 	JButton b2 = new JButton("Search by ID");
 	JButton b3 = new JButton("View List");
-	JButton b4 = new JButton("");
+	JButton b4 = new JButton("Remove Entry");
 
 	public void run() {
 		f.setVisible(true);
@@ -51,6 +51,7 @@ public class _02_LogSearch implements ActionListener {
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
+		b4.addActionListener(this);
 		f.pack();
 	}
 
@@ -62,8 +63,7 @@ public class _02_LogSearch implements ActionListener {
 			String a2 = JOptionPane.showInputDialog("Please put in the user's name.");
 			int an = Integer.parseInt(a);
 			ls.put(an, a2);
-		}
-		if (e.getSource() == b2) {
+		} else if (e.getSource() == b2) {
 			String a = JOptionPane.showInputDialog("Please put in the user's ID.");
 			int an = Integer.parseInt(a);
 			if (ls.containsKey(an)) {
@@ -71,13 +71,20 @@ public class _02_LogSearch implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(null, "That key does not exist.");
 			}
-		}
-		if (e.getSource() == b3) {
+		} else if (e.getSource() == b3) {
 			String he = "";
 			for (Entry<Integer, String> set : ls.entrySet()) {
 				he += "ID: " + set.getKey() + " Name: " + set.getValue() + "\n";
 			}
 			JOptionPane.showMessageDialog(null, he);
+		} else if (e.getSource() == b4) {
+			String a = JOptionPane.showInputDialog("Please put in the user's ID.");
+			int an = Integer.parseInt(a);
+			if (ls.containsKey(an)) {
+				ls.remove(an);
+			} else {
+				JOptionPane.showMessageDialog(null, "That key does not exist.");
+			}
 		}
 	}
 }
